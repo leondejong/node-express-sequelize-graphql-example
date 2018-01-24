@@ -1,0 +1,100 @@
+# List
+
+query Lists {
+  lists {
+    id
+    name
+    items {
+      id
+      listId
+      name
+      checked
+    }
+  }
+}
+
+query List($id: ID!) {
+  list(id: $id) {
+    id
+    name
+    items {
+      id
+      listId
+      name
+      checked
+    }
+  }
+}
+
+mutation CreateList($name: String) {
+  createList(name: $name) {
+    id
+    name
+  }
+}
+
+mutation UpdateList($id: ID!, $name: String) {
+  updateList(id: $id, name: $name) {
+    id
+    name
+  }
+}
+
+mutation DeleteList($id: ID!) {
+  deleteList(id: $id) {
+    id
+  }
+}
+
+# Item
+
+query Items {
+  items {
+    id
+    listId
+    name
+    checked
+  }
+}
+
+query Item($id: ID!) {
+  item(id: $id) {
+    id
+    listId
+    name
+    checked
+  }
+}
+
+mutation CreateItem($listId: ID, $name: String, $checked: Boolean) {
+  createItem(listId: $listId, name: $name, checked: $checked) {
+    id
+    listId
+    name
+    checked
+  }
+}
+
+mutation UpdateItem($id: ID!, $listId: ID, $name: String, $checked: Boolean) {
+  updateItem(id: $id, listId: $listId, name: $name, checked: $checked) {
+    id
+    listId
+    name
+    checked
+  }
+}
+
+mutation DeleteItem($id: ID!) {
+  deleteItem(id: $id) {
+    id
+  }
+}
+
+# Variables
+
+# {
+#   "id": 1,
+#   "listId": 1,
+#   "name": "Name",
+#   "checked": false
+# }
